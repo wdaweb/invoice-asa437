@@ -29,7 +29,7 @@
     <input type="text" name="code" id="">
     <input type="number" name="number" id="">
     花費:
-    <input type="number" name="spend" id="">
+    <input type="number" name="expend" id="">
     <input type="submit" value="儲存">
 
 
