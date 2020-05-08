@@ -1,0 +1,10 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+.headar{
+    height:50px;
+    border-bottom:1px solid #999;
+    box-shadow:0 0 5px #ccc;
+}
