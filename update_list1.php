@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁</title>
+    <title>重新輸入頁</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-
-
-
 
     <!-- Bootstrap link -->
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -25,13 +23,16 @@
     </script>
 
 
-    <?php include "./include/header.php"  ;?>
+    <?php include "./include/header.php" ;
+    //這邊 get list id
+    $id=$_GET['id'];
+    ?>
 
-
+    
     <div class="mx-auto container bg-info" style="width:800px;">
-        <form class="py-3 " action="save_invoice.php" method="post">
+        <form class="py-3 " action="update_list2.php" method="post">
             <div class="form-group mx-5">
-                <legend class="py-3 mx text-center">統一發票對獎系統</legend>
+                <legend class="py-3 mx text-center">重新輸入</legend>
                 期別:
                 <select name="period" id="">
                     <option value="1">1,2月</option>
@@ -59,9 +60,10 @@
             <div class="form-group px-5">
                 花費:
                 <input class="form-control" type="number" name="expend" id="">
+                <input class="form-control" type="hidden" name="id" value="<?=$id;?>">
             </div>
             <div class="mx-5 p-2"> 
-                <input class="btn btn-primary" type="submit" value="儲存">
+                <input class="btn btn-primary" type="submit" value="更新">
             </div>
         </form>
     </div>

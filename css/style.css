@@ -1,10 +1,59 @@
+body{
+    background-image: url("http://220.128.133.15/s1090208/Resume/other/phtoto_reference/Invoice/piggy-bank.jpg")!important; 
+    background-position:center;
+    background-repeat: no-repeat !important;
+    background-size: cover;
+}
+</style>
+
 *{
     margin:0;
-    padding:0;
-    box-sizing:border-box;
+    padding: 0;
+    box-sizing: border-box;
 }
-.headar{
+.header{
     height:50px;
-    border-bottom:1px solid #999;
-    box-shadow:0 0 5px #ccc;
+    border:1px solid #999;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.header ul{
+    list-style-type: none;
+}
+.header ul li{
+    display: inline-block;
+    padding:5px;
+    margin:0 10px;
+    border:1px solid #ccc;
+    border-radius:3px;
+}
+.header ul li a{
+    text-decoration:none; 
+}
+
+.nav{
+    list-style-type: none;
+}
+.nav li{
+    display: inline-block;
+    padding:5px;
+    margin:0 10px;
+    border:1px solid #ccc;
+    border-radius:3px;
+}
+
+.nav li a{
+    text-decoration:none;
+}
+
+.invoice-table{
+    border-collapse: collapse;
+    border: 1px solid #999;
+
+}
+.invoice-table td{
+    border: 1px solid #999;
+    padding:5px;
+
+        
 }
