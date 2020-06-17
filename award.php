@@ -13,11 +13,16 @@
 <div class="text-center">
 
     <?php
-    if(empty($_GET)){
-        echo "請選擇要對獎的項目<a href='invoice.php'>各期獎號</a>";
-        exit();
-    }
-//在此加入
+    // 清除資料表
+    $sql="TRUNCATE TABLE reward_record";
+    $pdo->exec($sql);
+
+    // if(empty($_GET)){
+    //     echo "請選擇要對獎的項目:<a href='invoice.php'>各期獎號</a>";
+    //     echo "<br>";
+    //     // echo "全部中獎記錄請點選:<a href='awardList.php?year=".$_GET['year']."&period=".$_GET['period']."'>中獎獎號</a>";
+    //     exit();
+    // }
     $award_type=[
         //第二值是資料庫的獎項，三值是取幾碼
         1=>["特別獎",1,8],
@@ -58,7 +63,6 @@
     }
 
 
-
     echo "<h4>該期發票號碼</h4>";
     $invoices=all("invoice",[
         "year"=>$_GET['year'],
@@ -86,59 +90,34 @@
             if(mb_substr($ins['number'],$start,$len) == $target_num ){
                 echo "<span style='color:red;font-size:20px'>".$ins['number']."中獎了</span>";
                 echo "<br>";
+            
+            //去invoice資料表撈expend資料
+                $row=find('invoice',['year'=>$_GET['year'],'period'=>$_GET['period'],'number'=>$ins['number']]);
+                // print_r($row); //測試用
+            //中獎號先存到 陣列
+                $onedata=[
+                    'number'=>$ins['number'],
+                    'period'=>$_GET['period'],
+                    'reward'=>$num['number'],
+                    'expend'=>$row['expend'],
+                    'year'=>$_GET['year'],
+                    "type"=>$award_type[$aw][0],
+                ];
+            //中獎存到資料庫, 並判斷是否存入資料庫
+            $res=save("reward_record",$onedata);
+                if($res==1){
+                echo "<span style='color:red;font-size:20px'>恭喜中獎</span>";
+                }else{
+                    echo "沒存入表格";
+                    
+                }
             }
+           
         }
-
-    //其它中獎號先存到 陣列
-       $onedata=[
-            'number'=>$ins['number'],
-            'period'=>$_GET['period'],
-            'reward'=>$num['number'],
-            // 'expend'=>$_GET['expend'],
-            'year'=>$_GET['year'],
-        ];
-        
-    //六獎中獎號先存到 陣列    
-        $ninedata=[
-            'number'=>$ins['number'],
-            'period'=>$_GET['period'],
-            'reward'=>$num['number'],
-            // 'expend'=>$_GET['expend'],
-            'year'=>$_GET['year'],
-        ];
-
     }
-
-//資料表儲存:只能一次儲存該期別獎號，無法一次六期別獎號全部存取
-//$ins['number'],會重複取
-//$_GET['expend']無法取得
-
-if(mb_substr($ins['number'],$start,$len) == $target_num){
-    $res=save("reward_record",$onedata);
-    if($res==1){
-        echo "恭喜中獎<br>";
-
-    }else{
-        echo "沒存入表格";
-    }
-
-    }else if($aw==9 && mb_substr($ins['number'],$start,$len) == $target_num ){
-        $res=save("reward_record",$ninedata);
-        if($res==1){
-            echo "恭喜中六獎<br>";
-    
-        }else{
-            echo "沒存入表格";
-        }
-
-    }else{
-        echo "很可惜哦，祝下次中獎";
-    }
-
-
-
-
+    to("awardList.php?year=".$_GET['year']."&period=".$_GET['period']."&type1=".$award_type[$aw][0]);
     ?>
+
 </div>
 
 </body>

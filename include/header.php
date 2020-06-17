@@ -7,6 +7,6 @@
 <div class="cotainer text-center py-5">
     <button type="button" class="btn btn-warning" style="width:130px;"><a href="list.php">發票列表</a></button>
     <button type="button" class="btn btn-warning" style="width:130px;"><a href="invoice.php">各期獎號</a></button>
-    <button type="button" class="btn btn-warning" style="width:130px;"><a href="award.php">對獎</a></button>
+    <!-- <button type="button" class="btn btn-warning" style="width:130px;"><a href="award.php">對獎</a></button> -->
     <button type="button" class="btn btn-warning" style="width:130px;"><a href="index.php">回首頁</a></button>
 </div>

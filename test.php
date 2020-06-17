@@ -32,8 +32,8 @@ $rows=all('reward_record',['number'=>$number]);
         <tr>
             <td><?=$row['number'];?></td>
             <td><?=$row['period'];?></td>
-            <td><?=$row[''];?></td>
-            <td><?=$row[''];?></td>
+            <td><?=$row['number'];?></td>
+            <td><?=$row['expend'];?></td>
             <td><?=$row['year'];?></td>
         </tr>
     <?php
